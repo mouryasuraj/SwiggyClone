@@ -1,14 +1,17 @@
 import RestaurantCard from "./RestaurantCard"
 import resList from "../Utils/mock-data"
+import Filter from "./Filter"
 import { useState } from "react"
 
 const Body = () => {
+
 
     // State for Restuarant
     const [listOfRes, setListOfRes] = useState(resList)
 
     // State for Checkbox
     const [topRatedRes, setTopRatedRes] = useState(false)
+    const [under200, setUnder200] = useState(false)
 
     // State for Search bar
     const [searchTerm, setSearchTerm] = useState('')
@@ -35,6 +38,19 @@ const Body = () => {
 
     }
 
+    // Under 200 Restaurant Logic
+    const handleUnder200 = () => {
+        setUnder200(!under200)
+        // Filtered restaurant which have rating more than 4.3
+        const filteredRes = listOfRes.filter(res => res.info.costForTwo.slice(1,4) <= 200);
+        if (!under200) {
+            setListOfRes(filteredRes)
+        } else {
+            setListOfRes(resList)
+        }
+
+    }
+
 
     return (
         <div className="body">
@@ -52,10 +68,10 @@ const Body = () => {
             {/* FIlter */}
             <div className="filter">
                 {/* Top rated */}
-                <div className="top-rated">
-                    <input type="checkbox" id="topRated" checked={topRatedRes} onChange={handleTopRatedRes} />
-                    <label htmlFor="topRated" title="More than 4.3 rating">top rated restaurant</label>
-                </div>
+                <Filter topRatedRes={topRatedRes} id="topRated" filterName="top rated restaurant" handleEvent={handleTopRatedRes} />
+
+                {/* Under 200 */}
+                <Filter id="under200" filterName="under 200" handleEvent={handleUnder200} />
             </div>
 
             {/* Restaurant Container */}

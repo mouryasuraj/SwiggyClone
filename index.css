@@ -135,6 +135,9 @@
 /* Filter  */
 .filter{
     padding: 20px 30px;
+    display: flex;
+    align-items: center;
+     gap: 30px;
 }
 .filter .top-rated{
     display: flex;
@@ -145,6 +148,7 @@
     width: 25px;
     height: 25px;
     user-select: none;
+    cursor: pointer;
 }
 .filter .top-rated label{
     font-size: 20px;
