@@ -1,13 +1,15 @@
 import RestaurantCard from "./RestaurantCard"
 import resList from "../Utils/mock-data"
 import Filter from "./Filter"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Shimmer from "./Shimmer"
 
 const Body = () => {
 
 
     // State for Restuarant
-    const [listOfRes, setListOfRes] = useState(resList)
+    const [listOfRes, setListOfRes] = useState([])
+    const [filteredRes, setFilteredRes] = useState([])
 
     // State for Checkbox
     const [topRatedRes, setTopRatedRes] = useState(false)
@@ -18,12 +20,14 @@ const Body = () => {
 
     // HandleSearchInput
     const handleSearchInput = (e) => {
-        const term = e.target.value
-        setSearchTerm(term)
-        const filterSearch = resList.filter(res => res.info.name.toLowerCase().includes(term.toLowerCase()));
-        setListOfRes(filterSearch)
+        e.preventDefault()
+        const filterSearch = listOfRes.filter(res => res.info.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        setFilteredRes(filterSearch)
     }
 
+    const handleInput = (e) =>{
+        setSearchTerm(e.target.value)
+    }
 
     // Top rated Restaurant Logic
     const handleTopRatedRes = () => {
@@ -31,9 +35,9 @@ const Body = () => {
         // Filtered restaurant which have rating more than 4.3
         const filteredRes = listOfRes.filter(res => res.info.avgRating > 4.3);
         if (!topRatedRes) {
-            setListOfRes(filteredRes)
+            setFilteredRes(filteredRes)
         } else {
-            setListOfRes(resList)
+            setFilteredRes(listOfRes)
         }
 
     }
@@ -42,23 +46,37 @@ const Body = () => {
     const handleUnder200 = () => {
         setUnder200(!under200)
         // Filtered restaurant which have rating more than 4.3
-        const filteredRes = listOfRes.filter(res => res.info.costForTwo.slice(1,4) <= 200);
+        const filteredRestaurant = listOfRes.filter(res => res.info.costForTwo.slice(1, 4) <= 200);
         if (!under200) {
-            setListOfRes(filteredRes)
+            setFilteredRes(filteredRestaurant)
         } else {
-            setListOfRes(resList)
+            setFilteredRes(listOfRes)
         }
 
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setListOfRes(resList)
+            setFilteredRes(resList)
+        }, 1000);
+    }, [])
 
+
+    // Conditional Rendering
+    // if (listOfRes.length === 0) {
+    //     return <Shimmer />
+    // }
+
+    // We can also perform conditional Rendering using ternary operator.
     return (
         <div className="body">
 
             {/* Search BAR  */}
-            <div className="search">
-                <input type="text" placeholder="Search...." value={searchTerm} onChange={handleSearchInput} />
-            </div>
+            <form onSubmit={handleSearchInput} className="search">
+                <input type="text" placeholder="Search for restaurant...." value={searchTerm} onChange={handleInput} />
+                <button>Search</button>
+            </form>
 
             {/* Title */}
             <div className="title-container">
@@ -77,7 +95,13 @@ const Body = () => {
             {/* Restaurant Container */}
             <div className="restaurant-container">
                 {
-                    listOfRes.map((card) => {
+                    listOfRes.length === 0
+                    ? <Shimmer />
+                    : filteredRes.map((card) => {
+                        return <RestaurantCard key={card.info.id} resData={card} />
+                    }) && filteredRes.length === 0 
+                    ? <h1>Results not found.</h1>
+                    : filteredRes.map((card) => {
                         return <RestaurantCard key={card.info.id} resData={card} />
                     })
                 }
