@@ -3,9 +3,10 @@ import resList from "../Utils/mock-data"
 import Filter from "./Filter"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
+import { swiggyResAPI } from "../Utils/constant"
+import {Link} from 'react-router-dom'
 
 const Body = () => {
-
 
     // State for Restuarant
     const [listOfRes, setListOfRes] = useState([])
@@ -56,11 +57,15 @@ const Body = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setListOfRes(resList)
-            setFilteredRes(resList)
-        }, 1000);
+        fetchedData()
     }, [])
+
+    async function fetchedData(){
+        const data = await fetch(swiggyResAPI);
+        const json = await data.json();
+        setListOfRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    }
 
 
     // Conditional Rendering
@@ -69,7 +74,7 @@ const Body = () => {
     // }
 
     // We can also perform conditional Rendering using ternary operator.
-    return (
+    return listOfRes.length===0 ? <Shimmer /> :(
         <div className="body">
 
             {/* Search BAR  */}
@@ -95,14 +100,12 @@ const Body = () => {
             {/* Restaurant Container */}
             <div className="restaurant-container">
                 {
-                    listOfRes.length === 0
-                    ? <Shimmer />
-                    : filteredRes.map((card) => {
-                        return <RestaurantCard key={card.info.id} resData={card} />
+                    filteredRes.map((card) => {
+                        return <Link to={`restaurant/${card.info.id}`} key={card.info.id}><RestaurantCard resData={card} /></Link>
                     }) && filteredRes.length === 0 
                     ? <h1>Results not found.</h1>
                     : filteredRes.map((card) => {
-                        return <RestaurantCard key={card.info.id} resData={card} />
+                        return <Link className="menu" to={`restaurant/${card.info.id}`} key={card.info.id}><RestaurantCard resData={card} /></Link>
                     })
                 }
             </div>

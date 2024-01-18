@@ -5,6 +5,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+:root{
+    --shimmerBgColor: rgb(237, 237, 237);
+}
+
 /* Header */
 
 .header{
@@ -16,6 +21,7 @@
     position: sticky;
     top: 0;
     background-color: white;
+    z-index: 1000;
 }
 
 .logo{
@@ -37,13 +43,14 @@
     gap: 20px;
 }
 
-.nav-items > ul > li{
+.nav-items > ul > .li{
     cursor: pointer;
     font-size: 20px;
     color: gray;
     font-weight:600;
+    text-decoration: none;
 }
-.nav-items > ul > li:hover{
+.nav-items > ul > .li:hover{
     opacity: 0.5;
 }
 
@@ -71,7 +78,7 @@
     
 }
 .restaurant-card:hover{
-    box-shadow: 0 0 18px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     
 }
 
@@ -177,41 +184,8 @@
 
 
 /* Shimmer UI */
-.shimmer-search-container{
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 30px;
-}
-.shimmer-search-btn{
-    width: 5%;
-    height: 35px;
-    background-color: rgb(237, 237, 237);
-    border-radius: 4px;
 
-}
-.shimmer-search{
-    width: 40%;
-    height: 35px;
-    background-color: rgb(237, 237, 237);
-    border-radius: 4px;
-}
-.shimmer-title{
-    width: 20%;
-    height: 40px;
-    background-color: rgb(237, 237, 237);
-    border-radius: 4px;
-    margin: 20px auto;
-}
-.shimmer-filter{
-    width: 15%;
-    height: 30px;
-    background-color: rgb(237, 237, 237);
-    border-radius: 4px;
-    margin: 10px 0;
-}
+
 
 .shimmer-res-container{
     width: 100%;
@@ -234,30 +208,31 @@
     width: 100%;
     height: 200px;
     border-radius: 7px 7px 0 0;
-    background-color: rgb(237, 237, 237);
+    background-color: var(--shimmerBgColor);
+
 }
 .shimmer-res-name{
     width: 100%;
     height: 20px;
-    background-color: rgb(237, 237, 237);
+    background-color: var(--shimmerBgColor);
     border-radius: 4px;
 }
 .shimmer-cuisines{
     width: 100%;
     height: 20px;
-    background-color: rgb(237, 237, 237);
+    background-color: var(--shimmerBgColor);
     border-radius: 4px;  
 }
 .shimmer-rating, .shimmer-eta{
     width: 70px;
     height: 20px;
-    background-color: rgb(237, 237, 237);
+    background-color: var(--shimmerBgColor);
     border-radius: 4px; 
 }
 .shimmer-price{
     width: 90px;
     height: 20px;
-    background-color: rgb(237, 237, 237);
+    background-color: var(--shimmerBgColor);
     border-radius: 4px; 
 }
 
@@ -284,4 +259,175 @@
     color: white;
     font-size: 18px;
     cursor: pointer;
+}
+
+
+/* Restaurant Menu  */
+/* Navigate */
+.res-menu .navigate p > :first-child{
+    font-size: 12px;
+    color: gray;
+    cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+    font-weight: 500;
+}
+.res-menu .navigate p > :first-child:hover{
+    color: rgb(66, 65, 65);
+}
+.res-menu .navigate p > :last-child{
+    font-size: 13px;
+    color: rgb(61, 61, 61);
+    font-weight: 600;
+}
+.res-menu{
+    width:100%;
+    max-width: 750px;
+    margin: auto;
+    padding: 30px;
+}
+.res-menu-details{
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* left */
+.res-menu-details .left .res-menu-title{
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(44, 44, 44);
+}   
+.res-menu-details .left .res-menu-cuisines, .res-menu-details .left .location{
+    font-size: 13px;
+    color: gray;
+}
+/* right */
+.res-menu-details .right{
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+.res-menu-details .right .res-menu-rating{
+    font-size: 17px;
+    color: green;
+    padding: 3px;
+    border-bottom: 1px solid lightgray;
+}
+
+.res-menu-details .rating{
+    font-size: 12px;
+    padding: 5px;
+    color: gray;
+}
+/* Hr */
+.res-menu .main-line{
+    margin: 50px 0;
+    border-top: 1px dotted;
+    color: gray;
+}
+
+/* restaurant Menu Dish list */
+.res-dish-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 50px 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    padding-bottom: 50px;
+}
+/* left */
+.res-dish-list .left{
+    width: 80%;
+}
+.res-dish-list .left .dish-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.res-dish-list .left .dish-details .dish-title{
+    font-size: 16px;
+    font-weight: 800;
+    color: rgb(42, 37, 37);
+}
+.res-dish-list .left .dish-details .dish-price{
+    font-size: 15px;
+    font-weight: 400;
+}
+.res-dish-list .left .dish-details .dish-description{
+    font-size: 13px;
+    font-weight: 300;
+    color: gray;
+}
+
+.res-dish-list .right .dish-img-container{
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.res-dish-list .right img{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.res-dish-list .right button{
+    position: absolute;
+    bottom: -10px;
+    padding: 8px;
+    border: 0;
+    outline: none;
+    background-color: white;
+    width: 80%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: green;
+    cursor: pointer;
+}
+.res-dish-list .right button:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    
+}
+.menu{
+    text-decoration: none;
+}
+
+
+
+/* Veg Non-veg icon */
+.veg{
+    border: 2px solid #0F8A65;
+    height: 12px;
+    width: 12.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.veg .circle{
+    width: 8px;
+    height: 8px;
+    background-color: #0F8A65;
+    border-radius: 50%;
+}
+.non-veg{
+    border: 2px solid #E43B4F;
+    height: 12px;
+    width: 12.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.non-veg .circle{
+    width: 8px;
+    height: 8px;
+    background-color: #E43B4F;
+    border-radius: 50%;
 }
