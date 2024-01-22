@@ -6,7 +6,7 @@ import Shimmer from './Shimmer'
 
 const RestaurantMenu = () => {
     const [listOfMenu, setListOfMenu] = useState(null);
-    const {resId} = useParams();
+    const { resId } = useParams();
 
     useEffect(() => {
         fetchMenuData().catch((err) => {
@@ -26,7 +26,10 @@ const RestaurantMenu = () => {
 
     // details of list of menu
     const { itemCards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    console.log(itemCards[0]);
+    // console.log(itemCards);
+    // details of list of menu
+    const { cards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
+    console.log(cards.slice(1));
 
 
     return (
@@ -46,12 +49,20 @@ const RestaurantMenu = () => {
                 </div>
             </div>
             <hr className="main-line" />
-            {/* Dish details */}  
-            {
-                itemCards.map((cards) => {
-                    return <RestaurantMenuList  key={cards.card.info.id} cards={cards} />
-                })
-            }
+            {/* Dish details */}
+            <div>
+                {
+                    itemCards.map((cards) => {
+                        return (
+                            <>
+                                <h1>Veg Only</h1>
+                                <RestaurantMenuList key={cards.card.info.id} cards={cards} />
+                            </>
+                        )
+                    })
+                }
+
+            </div>
         </div>
     )
 }
