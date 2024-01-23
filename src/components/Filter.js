@@ -2,8 +2,6 @@
 
 const Filter = ({topRatedRes, id, filterName, handleEvent}) => {
 
-     
-
 
     return (
         <div className="top-rated">

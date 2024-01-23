@@ -1,24 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import RestaurantMenuList from "./RestaurantMenuList";
-import { useEffect, useState } from "react";
-import { swiggyResMenuAPI } from "../Utils/constant";
 import Shimmer from './Shimmer'
+import useRestaurantMenu from "../Utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-    const [listOfMenu, setListOfMenu] = useState(null);
     const { resId } = useParams();
 
-    useEffect(() => {
-        fetchMenuData().catch((err) => {
-            console.log(err);
-        });
-    }, [])
+    const listOfMenu = useRestaurantMenu(resId);
 
-    async function fetchMenuData() {
-        const menuList = await fetch(swiggyResMenuAPI + resId);
-        const jsonData = await menuList.json();
-        setListOfMenu(jsonData)
-    };
     if (listOfMenu === null) return <Shimmer />
 
     // details of restaurnt
@@ -26,10 +15,8 @@ const RestaurantMenu = () => {
 
     // details of list of menu
     const { itemCards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    // console.log(itemCards);
-    // details of list of menu
-    const { cards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
-    console.log(cards.slice(1));
+
+
 
 
     return (
@@ -51,13 +38,11 @@ const RestaurantMenu = () => {
             <hr className="main-line" />
             {/* Dish details */}
             <div>
+                <h2>Recommended ({itemCards.length})</h2>
                 {
                     itemCards.map((cards) => {
                         return (
-                            <>
-                                <h1>Veg Only</h1>
-                                <RestaurantMenuList key={cards.card.info.id} cards={cards} />
-                            </>
+                            <RestaurantMenuList key={cards.card.info.id} cards={cards} />
                         )
                     })
                 }
