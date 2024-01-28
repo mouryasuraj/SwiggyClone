@@ -15,6 +15,8 @@ const RestaurantMenu = () => {
 
     // details of list of menu
     const { itemCards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+    const categories = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=> c?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+
 
 
 
@@ -38,11 +40,10 @@ const RestaurantMenu = () => {
             <hr className="main-line" />
             {/* Dish details */}
             <div>
-                <h2>Recommended ({itemCards.length})</h2>
                 {
-                    itemCards.map((cards) => {
+                    categories.map((card, index) => {
                         return (
-                            <RestaurantMenuList key={cards.card.info.id} cards={cards} />
+                            <RestaurantMenuList key={index} card={card} />
                         )
                     })
                 }

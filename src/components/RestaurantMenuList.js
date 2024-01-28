@@ -1,32 +1,24 @@
-import VegIcon from "./VegIcon";
-import NonVegIcon from "./NonVegIcon";
-import { memo } from "react";
-import { menuListImgURL } from "../Utils/constant";
+import { useState } from "react";
+import RestaurantCategory from "./RestaurantCategory";
 
-const RestaurantMenuList = (props) => {
+const RestaurantMenuList = ({ card }) => {
+    const [showItems, setShowItems] = useState(false)
 
-    const { cards } = props;
-    const { name, price, defaultPrice, description, imageId, isVeg } = cards?.card?.info
+    const handleShowItems = () => {
+        setShowItems(!showItems)
+    }
 
+    const { title, itemCards } = card?.card?.card
     return (
-            <div className="res-dish-list">
-                <div className="left">
-                    <div className="dish-details">
-                        {isVeg === 1 ? <VegIcon /> : <NonVegIcon />}
-                        <h3 className="dish-title">
-                            {name}
-                        </h3>
-                        <p className="dish-price"><i className="fa-solid fa-indian-rupee-sign"></i> {(defaultPrice || price) / 100}</p>
-                        <p className="dish-description">{description}</p>
-                    </div>
-                </div>
-                <div className="right">
-                    <div className="dish-img-container">
-                        <img src={menuListImgURL + imageId} alt="" />
-                        <button>ADD</button>
-                    </div>
-                </div>
+        <>
+            <div style={showItems ? {borderBottom : '1px solid rgb(205,205,205)'} : {borderBottom: '0'}} className="res-dish-header" onClick={handleShowItems}>
+                <h1>{title} ({itemCards.length})</h1>
+                <div>{showItems ? <i className="fa-solid fa-angle-up"></i> : <i className="fa-solid fa-angle-down"></i>}</div>
             </div>
+            <div className="item-cards">
+                {showItems && <RestaurantCategory data={itemCards} />}
+            </div>
+        </>
     )
 }
 

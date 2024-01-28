@@ -329,13 +329,34 @@
 }
 
 /* restaurant Menu Dish list */
+
+.res-dish-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    cursor: pointer;
+    margin: 20px 0;
+}
+.item-cards{
+    border-bottom: 20px solid rgb(235, 235, 235);
+}
+.res-dish-header h1{
+    font-size: 17px;
+    color: rgb(77, 72, 72);
+}
+.res-dish-header i{
+    font-size: 25px;
+    color: rgb(77, 72, 72);
+}
+
 .res-dish-list{
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
     flex-wrap: wrap;
-    margin: 50px 0;
+    margin: 30px 0;
     border-bottom: 1px solid rgb(200, 200, 200);
     padding-bottom: 50px;
 }
@@ -434,5 +455,5 @@
 
 /* Loader */
 .loader{
-    width: 120px;
+    width: 250px;
 }
