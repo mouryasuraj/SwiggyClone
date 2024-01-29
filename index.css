@@ -55,6 +55,67 @@
 }
 
 /* Body */
+/* Cuisines */
+.cuisines-container{
+    width: 80%;
+    margin: 0 auto 20px auto;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+/* Cuinses Header */
+.cuisines-container .cuisines-header{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cuisines-container .cuisines-header h1{
+    color: rgb(42, 40, 40);
+    font-size: 22px;
+}
+.cuisines-container .cuisines-header div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cuisines-container .cuisines-header .left-arrow, .cuisines-container .cuisines-header .right-arrow{
+    background-color: rgb(220, 220, 220);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: rgb(42, 40, 40);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.cuisines-container .cuisines-header .left-arrow:hover, .cuisines-container .cuisines-header .right-arrow:hover{
+    background-color: rgb(200, 200, 200);
+}
+/* Cuisines Body */
+.cuisines-container .cuisines-body{
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+.cuisines-container .cuisines-body::-webkit-scrollbar{
+    display: none;
+}
+.cuisines-container .cuisines-body img{
+    width: 130px;
+    object-fit: cover;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: all ease .3s;
+}
+.cuisines-container .cuisines-body img:hover{
+    transform: scale(1.05);
+}
+
+
+
+
+
 .restaurant-container{
     width: 80%;
     margin: 20px auto;

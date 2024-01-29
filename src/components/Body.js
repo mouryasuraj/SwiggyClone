@@ -4,19 +4,23 @@ import Shimmer from "./Shimmer"
 import {Link} from 'react-router-dom'
 import useBody from "../Utils/useBody"
 import Loader from "./Loader"
+import Cuisines from "./Cuisines"
 
 const Body = () => {
 
-    const [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading ] = useBody()
+    const [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading, cuisines ] = useBody()
 
     return listOfRes.length===0 ? <Shimmer /> :(
         <div className="body">
 
+            {/* Cuinsins Container */}
+            <Cuisines cuisines={cuisines} listOfRes={listOfRes} filteredRes={filteredRes} />
+
             {/* Search BAR  */}
-            <form onSubmit={handleSearchInput} className="search">
+            {/* <form onSubmit={handleSearchInput} className="search">
                 <input type="text" placeholder="Search for restaurant...." value={searchTerm} onChange={handleInput} />
                 <button>Search</button>
-            </form>
+            </form> */}
 
             {/* Title */}
             <div className="title-container">

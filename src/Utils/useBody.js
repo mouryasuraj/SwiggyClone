@@ -7,6 +7,9 @@ const useBody = () => {
     const [filteredRes, setFilteredRes] = useState([])
     const [loading, setLoading] = useState(null)
 
+    // useSTate for Cuisines Container
+    const [cuisines, setCuisines] = useState(null)
+
     // State for Checkbox
     const [topRatedRes, setTopRatedRes] = useState(false)
     const [under200, setUnder200] = useState(false)
@@ -18,11 +21,16 @@ const useBody = () => {
     const handleSearchInput = (e) => {
         e.preventDefault()
         const filterSearch = listOfRes.filter(res => res.info.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        showLoading()
+        setFilteredRes(filterSearch)
+    }
+
+    // Show laoding
+    const showLoading = () =>{
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 500);
-        setFilteredRes(filterSearch)
     }
 
     const handleInput = (e) => {
@@ -31,6 +39,7 @@ const useBody = () => {
 
     // Top rated Restaurant Logic
     const handleTopRatedRes = () => {
+        showLoading()
         setTopRatedRes(!topRatedRes)
         // Filtered restaurant which have rating more than 4.3
         const filteredRes = listOfRes.filter(res => res.info.avgRating > 4.3);
@@ -44,6 +53,7 @@ const useBody = () => {
 
     // Under 200 Restaurant Logic
     const handleUnder200 = () => {
+        showLoading()
         setUnder200(!under200)
         // Filtered restaurant which have rating more than 4.3
         const filteredRestaurant = listOfRes.filter(res => res.info.costForTwo.slice(1, 4) <= 200);
@@ -63,6 +73,7 @@ const useBody = () => {
         try {
             const data = await fetch(swiggyResAPI);
             const json = await data.json();
+            setCuisines(json)
             setListOfRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
             setFilteredRes(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         } catch (error) {
@@ -70,7 +81,7 @@ const useBody = () => {
         }
 
     }
-    return [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading]
+    return [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading, cuisines]
 }
 
 export default useBody;

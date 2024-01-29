@@ -14,3 +14,5 @@ export const swiggyResMenuAPI = 'https://www.swiggy.com/dapi/menu/pl?page-type=R
 
 export const menuListImgURL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/"
 
+// Cuinsines Image
+export const cuisinesImg = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/"
