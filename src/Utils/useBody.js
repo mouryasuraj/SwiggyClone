@@ -67,6 +67,7 @@ const useBody = () => {
 
     useEffect(() => {
         fetchedData()
+        window.scrollTo(0,0)
     }, [])
 
     async function fetchedData() {

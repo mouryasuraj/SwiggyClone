@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenuList = ({ card }) => {
@@ -7,6 +7,7 @@ const RestaurantMenuList = ({ card }) => {
     const handleShowItems = () => {
         setShowItems(!showItems)
     }
+
 
     const { title, itemCards } = card?.card?.card
     return (

@@ -6,15 +6,18 @@ import About from "./components/About";
 import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Restaurants from "./components/Restaurants";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
+
 // Root Component
 const App = () =>{
     return(
-        <>
+        <div id="main">
             <Header />
             <Outlet />
-        </>
+        </div>
     )
 }
 
@@ -40,7 +43,15 @@ const appRouter = createBrowserRouter([
                 element:<Cart />
             },
             {
-                path:'/restaurant/:resId',
+                path:'/restaurant-menu/:resId',
+                element:<RestaurantMenu />
+            },
+            {
+                path:'/category/:catId/:catType',
+                element: <Restaurants />
+            },
+            {
+                path:'/category/:catId/:catType/restaurant-menu/:resId',
                 element:<RestaurantMenu />
             }
         ]

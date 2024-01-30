@@ -42,7 +42,7 @@ const Body = () => {
                     filteredRes.length === 0 
                     ? <h1>Results not found.</h1>
                     : filteredRes.map((card) => {
-                        return <Link className="menu" to={`restaurant/${card.info.id}`} key={card.info.id}><RestaurantCard resData={card} /></Link>
+                        return <Link className="menu" to={`restaurant-menu/${card.info.id}`} key={card.info.id}><RestaurantCard resData={card} /></Link>
                     }))
                 }
             </div>

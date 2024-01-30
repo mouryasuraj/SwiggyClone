@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import RestaurantMenuList from "./RestaurantMenuList";
 import Shimmer from './Shimmer'
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
+import NavigateHome from "./NavigateHome";
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
@@ -15,7 +16,7 @@ const RestaurantMenu = () => {
 
     // details of list of menu
     const { itemCards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    const categories = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=> c?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+    const categories = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
 
 
 
@@ -23,9 +24,7 @@ const RestaurantMenu = () => {
 
     return (
         <div className="res-menu">
-            <div className="navigate">
-                <p><Link to='/'><span>Home </span> </Link> <span style={{ fontSize: '12px', color: 'gray' }}> / </span> <span>{name}</span></p>
-            </div>
+            <NavigateHome name={name} />
             <div className="res-menu-details">
                 <div className="left">
                     <h2 className="res-menu-title">{name}</h2>

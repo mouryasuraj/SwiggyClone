@@ -8,9 +8,9 @@ const RestaurantCategory = ({ data }) => {
         <>
             {
                 data.map((card) => {
-                    const { name, price, defaultPrice, description, imageId, isVeg } = card?.card?.info
+                    const { name, price, defaultPrice, description, imageId, isVeg, id } = card?.card?.info
                     return (
-                        <div className="res-dish-list">
+                        <div key={id} className="res-dish-list">
                             <div className="left">
                                 <div className="dish-details">
                                     {isVeg === 1 ? <VegIcon /> : <NonVegIcon />}
@@ -23,7 +23,7 @@ const RestaurantCategory = ({ data }) => {
                             </div>
                             <div className="right">
                                 <div className="dish-img-container">
-                                    <img src={menuListImgURL + imageId} alt="" />
+                                    {imageId ? <img src={menuListImgURL + imageId} alt="" /> : ''}
                                     <button>ADD</button>
                                 </div>
                             </div>

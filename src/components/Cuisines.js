@@ -1,29 +1,33 @@
 import { useEffect } from "react";
 import { cuisinesImg } from "../Utils/constant";
+import { Link } from 'react-router-dom'
 
-const Cuisines = ({ cuisines, topRatedRes, under200 }) => {
-    console.log(cuisines);
+const Cuisines = ({ cuisines }) => {
     let cuisineBody
-    useEffect(()=>{
-         cuisineBody = document.querySelector('.cuisines-body')
+    useEffect(() => {
+        cuisineBody = document.querySelector('.cuisines-body')
     })
 
     const handleLeftArrow = () => {
         if (cuisineBody) {
             cuisineBody.scrollBy(-900, 0)
-            console.log("left arrow");
         }
     }
     const handleRightArrow = () => {
         if (cuisineBody) {
             cuisineBody.scrollBy(900, 0)
         }
-        console.log("right arrow");
     }
 
 
     const { header, imageGridCards } = cuisines?.data?.cards[0]?.card?.card;
-    console.log(imageGridCards);
+    const img = Number(imageGridCards.info[0].entityId);
+    if (isNaN(img)) {
+        console.log("Nan");
+    } else {
+        console.log("nont nana");
+    }
+
     return (
         <div className="cuisines-container">
             <div className="cuisines-header">
@@ -41,7 +45,7 @@ const Cuisines = ({ cuisines, topRatedRes, under200 }) => {
                 {
                     imageGridCards.info.map((img) => {
                         return (
-                            <img key={img.id} src={cuisinesImg + img.imageId} alt="" />
+                            <Link to={`category/${isNaN(Number(img.entityId)) ? img.entityId.slice(36, 41) : Number(img.entityId)}/${img.action.text}`} key={img.id} ><img src={cuisinesImg + img.imageId} alt="" /></Link>
                         )
                     })
                 }

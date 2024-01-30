@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 const useRestaurantMenu = (resId) => {
     const [listOfMenu, setListOfMenu] = useState(null);
 
+
     useEffect(() => {
         fetchMenuData()
+        window.scrollTo(0,0)
     }, [])
 
     async function fetchMenuData() {
