@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCard from "./RestaurantCard";
 import NavigateHome from './NavigateHome'
+import { restaurantWithLabel } from "./RestaurantCard";
 
 
 const Restaurants = () => {
@@ -13,13 +14,16 @@ const Restaurants = () => {
     const categoryRestaurant = useRestaurants(catId, catType)
 
 
+    // RestaurantWithLable
+    const RestaurantWithLabel = restaurantWithLabel(RestaurantCard)
+
+
     if (categoryRestaurant === null) return <Shimmer />
     // Fetch title and description 
-    const { title, description } = categoryRestaurant[0].card.card;
+    const { title, description } = categoryRestaurant[0]?.card?.card;
 
     // Fetching Restaurants
-    const catRes = categoryRestaurant.filter((c) => c.card.card['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.Restaurant")
-    console.log(catRes);
+    const catRes = categoryRestaurant.filter((c) => c?.card?.card['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.Restaurant")
 
     return (
         <>
@@ -34,7 +38,11 @@ const Restaurants = () => {
                 <div className="res-category-cards-container">
                     {
                         catRes.map((item) => (
-                            <Link className="menu" to={`restaurant-menu/${item.card.card.info.id}`} key={item.card.card.info.id}><RestaurantCard resData={item?.card.card} /></Link>
+                            <Link className="menu" to={`restaurant-menu/${item?.card?.card?.info?.id}`} key={item?.card?.card?.info?.id}>
+                            {
+                                item?.card?.card?.info?.promoted ? <RestaurantWithLabel resData={item?.card?.card} /> : <RestaurantCard resData={item?.card?.card} />
+                            }
+                            </Link>
                         ))
                     }
                 </div>
@@ -42,5 +50,8 @@ const Restaurants = () => {
         </>
     )
 }
+
+
+
 
 export default Restaurants;

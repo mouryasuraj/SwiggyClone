@@ -15,7 +15,6 @@ const RestaurantMenu = () => {
     const { name, cuisines, areaName, sla, avgRating, totalRatingsString } = listOfMenu?.data?.cards[0]?.card?.card?.info
 
     // details of list of menu
-    const { itemCards } = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
     const categories = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
 
 
@@ -29,7 +28,7 @@ const RestaurantMenu = () => {
                 <div className="left">
                     <h2 className="res-menu-title">{name}</h2>
                     <p className="res-menu-cuisines">{cuisines.join(', ')}</p>
-                    <p className="location">{areaName}, {sla.lastMileTravelString}</p>
+                    <p className="location">{areaName}, {sla?.lastMileTravelString}</p>
                 </div>
                 <div className="right">
                     <h2 className="res-menu-rating"><i style={{ marginRight: '3px' }} className="fa-solid fa-star"></i>{avgRating}</h2>

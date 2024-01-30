@@ -19,19 +19,13 @@ const Cuisines = ({ cuisines }) => {
         }
     }
 
-
     const { header, imageGridCards } = cuisines?.data?.cards[0]?.card?.card;
-    const img = Number(imageGridCards.info[0].entityId);
-    if (isNaN(img)) {
-        console.log("Nan");
-    } else {
-        console.log("nont nana");
-    }
+
 
     return (
         <div className="cuisines-container">
             <div className="cuisines-header">
-                <h1>Suraj, {(header.title).toLowerCase()}</h1>
+                <h1>Suraj, {(header?.title).toLowerCase()}</h1>
                 <div>
                     <div className="left-arrow" onClick={handleLeftArrow} >
                         <i className="fa-solid fa-arrow-left"></i>
@@ -43,9 +37,12 @@ const Cuisines = ({ cuisines }) => {
             </div>
             <div className="cuisines-body">
                 {
-                    imageGridCards.info.map((img) => {
+                    imageGridCards?.info.map((img) => {
                         return (
-                            <Link to={`category/${isNaN(Number(img.entityId)) ? img.entityId.slice(36, 41) : Number(img.entityId)}/${img.action.text}`} key={img.id} ><img src={cuisinesImg + img.imageId} alt="" /></Link>
+                            <Link
+                                to={`category/${isNaN(Number(img?.entityId)) ? img?.entityId.slice(36, 41) : img?.entityId}/${img?.action?.text.replace(/\s/g, '')}`}
+                                key={img?.id} ><img src={cuisinesImg + img?.imageId} alt={`${img?.action?.text} Cuisine Image`} />
+                            </Link>
                         )
                     })
                 }
@@ -55,5 +52,3 @@ const Cuisines = ({ cuisines }) => {
 }
 
 export default Cuisines;
-
-// https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger.png

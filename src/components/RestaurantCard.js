@@ -17,7 +17,7 @@ const RestaurantCard = (props) => {
             {/* Restaurant Rating and ETS */}
             <div className="details">
                 <h4 className="rating">{avgRating}⭐</h4>
-                <h4 className="eta">{sla.deliveryTime} MINS</h4>
+                <h4 className="eta">{sla?.deliveryTime} MINS</h4>
             </div>
             {/* Restaurant Price */}
             <h4 className="price">{costForTwo}</h4>
@@ -26,4 +26,17 @@ const RestaurantCard = (props) => {
     )
 }
 
-export default RestaurantCard
+// Restaurant With Promoted Label
+export const restaurantWithLabel = (RestaurantCard) =>{
+    return (props)=>{
+        return(
+            <div className="res-lable-container">
+                <h3 className="label">Promoted</h3>
+                <RestaurantCard {...props} />
+            </div>
+        )
+    }
+}
+
+
+export default RestaurantCard;

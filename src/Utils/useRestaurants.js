@@ -9,9 +9,13 @@ const useRestaurants = (catId,catType) =>{
     },[])
 
     const fetchData = async () =>{
-        const data = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0826802&lng=80.2707184&collection=${catId}&tags=layout_CCS_${catType}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`)
-        const json = await data.json();
-        setCategoryRestaurant(json?.data?.cards)
+        try { 
+            const data = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0512616&lng=72.9368399&collection=${catId}&tags=layout_CCS_${catType}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`)
+            const json = await data.json();
+            setCategoryRestaurant(json?.data?.cards)
+        } catch (error) {
+            console.log(error);
+        }
     }
     return categoryRestaurant;
 }

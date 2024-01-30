@@ -1,16 +1,21 @@
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard, { restaurantWithLabel } from "./RestaurantCard"
 import Filter from "./Filter"
 import Shimmer from "./Shimmer"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import useBody from "../Utils/useBody"
 import Loader from "./Loader"
 import Cuisines from "./Cuisines"
 
+
 const Body = () => {
 
-    const [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading, cuisines ] = useBody()
+    const [handleSearchInput, handleInput, searchTerm, handleTopRatedRes, handleUnder200, filteredRes, listOfRes, topRatedRes, loading, cuisines] = useBody()
 
-    return listOfRes.length===0 ? <Shimmer /> :(
+    // RestaurantWIthLabel Promoted
+    const RestaurantWithPromotedLabel = restaurantWithLabel(RestaurantCard)
+
+
+    return listOfRes.length === 0 ? <Shimmer /> : (
         <div className="body">
 
             {/* Cuinsins Container */}
@@ -38,12 +43,17 @@ const Body = () => {
 
             {/* Restaurant Container */}
             <div className="restaurant-container">
-                {   loading ? <Loader /> : (
-                    filteredRes.length === 0 
-                    ? <h1>Results not found.</h1>
-                    : filteredRes.map((card) => {
-                        return <Link className="menu" to={`restaurant-menu/${card.info.id}`} key={card.info.id}><RestaurantCard resData={card} /></Link>
-                    }))
+                {loading ? <Loader /> : (
+                    filteredRes.length === 0
+                        ? <h1>Results not found.</h1>
+                        : filteredRes.map((card) => {
+                            return (
+                                <Link className="menu" to={`restaurant-menu/${card?.info?.id}`} key={card?.info?.id}>
+                                {
+                                    card?.info?.promoted ? <RestaurantWithPromotedLabel resData={card} /> : <RestaurantCard resData={card} />
+                                }
+                                </Link>)
+                        }))
                 }
             </div>
         </div>

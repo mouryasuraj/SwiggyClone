@@ -20,7 +20,7 @@ const useBody = () => {
     // HandleSearchInput
     const handleSearchInput = (e) => {
         e.preventDefault()
-        const filterSearch = listOfRes.filter(res => res.info.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        const filterSearch = listOfRes.filter(res => res?.info?.name.toLowerCase().includes(searchTerm.toLowerCase()));
         showLoading()
         setFilteredRes(filterSearch)
     }
@@ -42,7 +42,7 @@ const useBody = () => {
         showLoading()
         setTopRatedRes(!topRatedRes)
         // Filtered restaurant which have rating more than 4.3
-        const filteredRes = listOfRes.filter(res => res.info.avgRating > 4.3);
+        const filteredRes = listOfRes.filter(res => res?.info?.avgRating > 4.3);
         if (!topRatedRes) {
             setFilteredRes(filteredRes)
         } else {
@@ -56,7 +56,7 @@ const useBody = () => {
         showLoading()
         setUnder200(!under200)
         // Filtered restaurant which have rating more than 4.3
-        const filteredRestaurant = listOfRes.filter(res => res.info.costForTwo.slice(1, 4) <= 200);
+        const filteredRestaurant = listOfRes.filter(res => res?.info?.costForTwo.slice(1, 4) <= 200);
         if (!under200) {
             setFilteredRes(filteredRestaurant)
         } else {
@@ -82,7 +82,7 @@ const useBody = () => {
         }
 
     }
-    return [handleInput, handleSearchInput, handleTopRatedRes, handleUnder200, searchTerm, filteredRes, listOfRes, topRatedRes, loading, cuisines]
+    return [handleSearchInput, handleInput, searchTerm , handleTopRatedRes, handleUnder200, filteredRes, listOfRes, topRatedRes, loading, cuisines]
 }
 
 export default useBody;
