@@ -1,8 +1,15 @@
 import VegIcon from "./VegIcon";
 import NonVegIcon from "./NonVegIcon";
 import { menuListImgURL } from "../Utils/constant";
+import { useDispatch } from 'react-redux'
+import { addItem } from '../Utils/slices/cartSlice'
 
 const RestaurantCategory = ({ data }) => {
+
+    const dispatch = useDispatch()
+    const handleAddItemToCart = (card) => {
+        dispatch(addItem(card))
+    }
 
     return (
         <>
@@ -24,7 +31,7 @@ const RestaurantCategory = ({ data }) => {
                             <div className="right">
                                 <div className="dish-img-container">
                                     {imageId ? <img src={menuListImgURL + imageId} alt="" /> : ''}
-                                    <button>ADD</button>
+                                    <button onClick={() => handleAddItemToCart(card)}>ADD</button>
                                 </div>
                             </div>
                         </div>

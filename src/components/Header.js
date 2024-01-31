@@ -1,10 +1,13 @@
-import { LOGO_URL } from "../Utils/constant";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 const Header = () => {
 
     const [logIn, setLogIn] = useState(true);
+
+    const cartItems = useSelector((store) => store.cart.items);
 
     //HandleLogIn Btn
     const handleLogIn = () => {
@@ -23,7 +26,7 @@ const Header = () => {
                         <Link className="li" to='/'>Home</Link>
                         <Link className="li" to='/about'>About</Link>
                         <Link className="li" to='/contact'>Contact</Link>
-                        <Link className="li" to='/cart'>Cart</Link>
+                        <Link className="li" to='/cart'>Cart({cartItems.length})</Link>
                     </ul>
                     <button onClick={handleLogIn} className={`${logIn ? "loginBtn" : "signOut"}`}>{logIn ? "Log In" : "Sign Out"}</button>
                 </div>
