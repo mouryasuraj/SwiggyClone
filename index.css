@@ -549,6 +549,7 @@
     color: green;
     cursor: pointer;
 }
+
 .res-dish-list .right button:hover{
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     
@@ -730,7 +731,7 @@
 .cart-container .cart-item-right{
     padding-right:30px;
 }
-.cart-container .cart-item-right .item-quantity{
+.item-quantity{
     display: flex;
     align-items: center;
     gap: 30px;
@@ -748,7 +749,7 @@
 .cart-container .remove-item:hover{
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
-.cart-container .cart-item-right .item-quantity .quantity{
+.quantity{
     display: flex;
     align-items: center;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
@@ -759,7 +760,7 @@
     font-weight: 500;
     color: rgb(101, 101, 101);
 }
-.cart-container .decrease, .cart-container .increase{
+.decrease, .increase{
     width: 30px;
     height: 30px;
     display: flex;
@@ -769,10 +770,10 @@
     cursor: pointer;
     transition: all ease .3s;
 }
-.cart-container .decrease:hover, .cart-container .increase:hover{
+.decrease:hover, .increase:hover{
     background-color: rgb(205, 205, 205);
 }
-.cart-container .no-of-quantity{
+.no-of-quantity{
     width: 30px;
     height: 30px;
     display: flex;

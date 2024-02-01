@@ -1,5 +1,6 @@
 import VegIcon from './VegIcon'
 import NonVegIcon from './NonVegIcon'
+import Quantity from './Quantity'
 import { menuListImgURL } from '../Utils/constant'
 import { removeItem } from '../Utils/slices/cartSlice'
 import { useDispatch } from 'react-redux'
@@ -23,11 +24,7 @@ const CartItems = ({ data }) => {
                     <p>{areaName}</p>
                 </div>
                 <div className="item-quantity">
-                    <div className='quantity'>
-                        <div className="decrease">-</div>
-                        <div className="no-of-quantity">1</div>
-                        <div className="increase">+</div>
-                    </div>
+                    <Quantity />
                     <h4 className='price'><i className="fa-solid fa-indian-rupee-sign" />{(defaultPrice || price) / 100}</h4>
                 </div>
             </div>

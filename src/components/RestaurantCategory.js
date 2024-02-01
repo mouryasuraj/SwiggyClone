@@ -1,13 +1,19 @@
 import VegIcon from "./VegIcon";
 import NonVegIcon from "./NonVegIcon";
+import Quantity from "./Quantity";
 import { menuListImgURL } from "../Utils/constant";
 import { useDispatch } from 'react-redux'
 import { addItem } from '../Utils/slices/cartSlice'
+import { useState } from "react";
 
 const RestaurantCategory = ({ data }) => {
 
+    // Local variable to show Quantity component
+    const [showQuantity, setShowQuantity] = useState(false)
+
     const dispatch = useDispatch()
     const handleAddItemToCart = (card) => {
+        setShowQuantity(true)
         dispatch(addItem(card))
     }
 
