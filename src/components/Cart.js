@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
-import RestaurantCategory from './RestaurantCategory'
+import CartItems from './CartItems'
 import { clearCart } from '../Utils/slices/cartSlice'
 import { useEffect } from 'react'
+import NavigateHome from './NavigateHome'
 
 const Cart = () => {
 
@@ -9,22 +10,33 @@ const Cart = () => {
     const cartLength = cartItems.length;
 
     const dispatch = useDispatch()
-
-    const handleClearCart = () => {
+    const handleCart = () => {
         dispatch(clearCart())
     }
 
+
     useEffect(() => {
         window.scrollTo(0, 0)
-    })
+    }, [])
 
     return (
         <div className="cart-container">
-            <div className='cart-header'>
-                <h1>Cart</h1>
-              {cartLength ? <button onClick={handleClearCart}>Clear Cart</button> : ''}
+            <div className='cart-to-home'>
+                <NavigateHome name='Cart' />
             </div>
-            {cartLength ? <RestaurantCategory data={cartItems} /> : <h1>Your cart is empty.</h1>}
+            {
+                cartLength
+                    ? <div className="cart-items-container">
+                        {
+                            cartItems.map((cartItem) => (
+                                <CartItems key={cartItem?.card?.info?.id} data={cartItem} />
+                            ))
+                        }
+                        <button onClick={handleCart} className='clear-cart'><h4>Clear Cart</h4></button>
+                    </div>
+                    : <h1 className='empty-cart'>Your cart is Empty.</h1>
+            }
+
         </div>
     )
 }

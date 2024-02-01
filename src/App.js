@@ -2,15 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import About from "./components/About";
+import Help from "./components/Help";
 import Cart from "./components/Cart";
-import Contact from "./components/Contact";
-import Cart from "./components/Cart";
+import Offers from "./components/Offers";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Restaurants from "./components/Restaurants";
+import Help from "./components/Help";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from 'react-redux'
 import appStore from './Utils/appStore'
+import Search from "./components/Search";
+import UserProfile from "./components/UserProfile";
 
 
 // Root Component
@@ -35,16 +37,24 @@ const appRouter = createBrowserRouter([
                 element: <Body />
             },
             {
-                path: '/about',
-                element: <About />
+                path: '/help',
+                element: <Help />
             },
             {
-                path: '/contact',
-                element: <Contact />
+                path: '/offers',
+                element: <Offers />
             },
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/search',
+                element: <Search />
+            },
+            {
+                path: '/profile',
+                element: <UserProfile />
             },
             {
                 path: '/restaurant-menu/:resId',
