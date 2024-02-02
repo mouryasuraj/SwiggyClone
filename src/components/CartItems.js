@@ -4,9 +4,16 @@ import Quantity from './Quantity'
 import { menuListImgURL } from '../Utils/constant'
 import { removeItem } from '../Utils/slices/cartSlice'
 import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
-const CartItems = ({ data }) => {
+const CartItems = ({ data, index }) => {
+
+    const [num, setNum] = useState(1)
+
     const { name, id, price, defaultPrice, imageId = "5a148e63e9c54942e37627da1aa156be", isVeg, areaName = 'chembur' } = data?.card?.info
+
+    const [itemPrice, setItemPrice] = useState((price || defaultPrice) / 100)
+
     const dispatch = useDispatch()
     const handleRemoveItem = (id) => {
         dispatch(removeItem(id))
@@ -24,9 +31,10 @@ const CartItems = ({ data }) => {
                     <p>{areaName}</p>
                 </div>
                 <div className="item-quantity">
-                    <Quantity />
-                    <h4 className='price'><i className="fa-solid fa-indian-rupee-sign" />{(defaultPrice || price) / 100}</h4>
+                    <Quantity index={index} setNum={setNum} num={num} setItemPrice={setItemPrice} />
+                    <h4 className='price'><i className="fa-solid fa-indian-rupee-sign" />{((price || defaultPrice) / 100).toFixed(2)}</h4>
                 </div>
+                <h4 className='totalPrice price'>Total - <i className="fa-solid fa-indian-rupee-sign" />{itemPrice.toFixed(2)}</h4>
             </div>
             <div onClick={() => handleRemoveItem(id)} className="remove-item">
                 <i class="fa-solid fa-trash"></i>

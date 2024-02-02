@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
+import offers from '../assets/offers.png'
+import activeOffers from '../assets/activeOffers.png'
+
+
 
 const Header = () => {
 
@@ -31,7 +35,7 @@ const Header = () => {
                         </NavLink>
                         <NavLink className={({ isActive }) => `${isActive ? 'active' : 'li'}`} to='/offers'>
                             <div className="icons-container">
-                                <img src="https://www.svgrepo.com/show/24573/offer-label.svg" alt="" />
+                                <img src={offers} alt="" />
                                 Offers
                             </div>
                         </NavLink>

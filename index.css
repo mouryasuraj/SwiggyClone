@@ -30,7 +30,7 @@
 .active{
     cursor: pointer;
     font-size: 18px;
-    color:red;
+    color:orange;
     font-weight:400;
     text-decoration: none;
 }
@@ -678,7 +678,7 @@
 }
 
 .cart-container .cart-items-container{
-    max-width: 400px;
+    max-width: 450px;
     width: 100%;
     background-color: white;
     margin:20px auto;
@@ -698,14 +698,18 @@
     border-bottom: 1px solid rgb(210, 210, 210);
     position: relative;
 }
-.cart-items-container:last-child{
-    padding-bottom: 0;
-}
+
 
 .cart-container .cart-item-left{
     width: 20%;
     display: flex;
     align-items: center;
+    position: relative;
+}
+.cart-container .cart-item-right .totalPrice{
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 .cart-container .cart-item-left img{
     width: 90px;
@@ -769,6 +773,7 @@
     font-size: 20px;
     cursor: pointer;
     transition: all ease .3s;
+    user-select: none;
 }
 .decrease:hover, .increase:hover{
     background-color: rgb(205, 205, 205);
@@ -793,3 +798,38 @@
     margin-top: 30px;
     color: rgb(63, 63, 63);
 }
+
+
+/* Billing container */
+.billing-container{
+    position: fixed;
+    width: 250px;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    background-color: white;
+    top: 30%;
+    right: 10%;
+}
+.billing-container h4{
+    font-size: 15px;
+    color: rgb(52, 52, 52);
+    font-weight: 700;
+}
+.billing-container .total-container, .billing-container .gst, .billing-container .pay{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.billing-container .total-container p, .billing-container .gst p{
+    color: rgb(87, 87, 87);
+    font-weight: 400;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.billing-container hr{
+    border: 1px solid rgb(218, 218, 218);
+    margin: 6px 0;
+}
+
