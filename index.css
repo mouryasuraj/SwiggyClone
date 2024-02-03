@@ -13,12 +13,23 @@
 /* Header */
 
 .header{
-    padding: 11px 20px;
+    padding: 0 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 1000;
+}
+.header .logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header .logo-container img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 .header nav{
     display: flex;
@@ -632,7 +643,7 @@
 /* cart-container */
 
 .cart-container{
-    background-color:#E9ECEE;
+    background-color:#f3f3f3;
     width: 100%;
     min-height: 95vh;
     padding: 40px 0;
@@ -649,7 +660,7 @@
     font-size: 14;
     font-weight: 500;
     border-radius: 50px;
-    border: 1px solid black;
+    border: 1px solid rgb(51, 49, 49);
     background: transparent;
     overflow: hidden;
 }
@@ -658,7 +669,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: rgb(51, 49, 49);
     left: 0;
     bottom: -100%;
     border-radius: 50%;
@@ -683,6 +694,7 @@
     background-color: white;
     margin:20px auto;
     border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
 }
 .cart-container .cart-to-home{
@@ -833,3 +845,48 @@
     margin: 6px 0;
 }
 
+/* Item AddedSuccesfully */
+.item-added-success{
+    position: fixed;
+    top: 100px;
+    right: 50%;
+    background-color: green;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: 500;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    animation: item-added .2s linear;
+}
+.item-in-cart{
+    position: fixed;
+    top: 100px;
+    right: 50%;
+    background-color: rgb(249, 83, 83);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: 500;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    animation: item-added .2s linear;
+}
+
+@keyframes item-added{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -34,7 +34,7 @@ const CartItems = ({ data, index }) => {
                     <Quantity index={index} setNum={setNum} num={num} setItemPrice={setItemPrice} />
                     <h4 className='price'><i className="fa-solid fa-indian-rupee-sign" />{((price || defaultPrice) / 100).toFixed(2)}</h4>
                 </div>
-                <h4 className='totalPrice price'>Total - <i className="fa-solid fa-indian-rupee-sign" />{itemPrice.toFixed(2)}</h4>
+                <h4 className='totalPrice price'>Total : <i className="fa-solid fa-indian-rupee-sign" />{itemPrice.toFixed(2)}</h4>
             </div>
             <div onClick={() => handleRemoveItem(id)} className="remove-item">
                 <i class="fa-solid fa-trash"></i>

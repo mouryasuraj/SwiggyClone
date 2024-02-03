@@ -4,21 +4,22 @@ import { clearCart } from '../Utils/slices/cartSlice'
 import { useEffect } from 'react'
 import NavigateHome from './NavigateHome'
 import BillDetails from './BillDetails'
+import ItemAddedSuccessfully from './ItemAddedSuccessfully'
 
 const Cart = () => {
 
+    const { items} = useSelector((store) => store.cart)
+    const cartLength = items.length;
 
-    const cartItems = useSelector((store) => store.cart.items)
     const finalPrice = useSelector((store) => store.cart.totalPrice)
-    const cartLength = cartItems.length;
+
     let totalPrice = 0
-    cartItems.forEach((p) => {
+    items.forEach((p) => {
         totalPrice = totalPrice + Number(p.card.info.defaultPrice || p.card.info.price)
     })
+
     const total = (totalPrice + finalPrice) / 100
     const gst = (total * 5) / 100;
-
-
 
     const dispatch = useDispatch()
     const handleCart = () => {
@@ -28,10 +29,10 @@ const Cart = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         if (cartLength) {
-            const cartLastItem = document.querySelector('.cartItems').lastChild
-            cartLastItem.style.borderBottom = '0'
-            cartLastItem.style.paddingBottom = '0'
-            cartLastItem.style.marginBottom = '0'
+            const cartLastItem = document.querySelector('.cart-Items').lastChild;
+            cartLastItem.style.borderBottom = '0';
+            cartLastItem.style.paddingBottom = '0';
+            cartLastItem.style.marginBottom = '0';
         }
     }, [])
 
@@ -44,9 +45,9 @@ const Cart = () => {
                 cartLength
                     ? <div className="cart-items-container">
                         {/* CartItems */}
-                        <div className='cartItems'>
+                        <div className='cart-Items'>
                             {
-                                cartItems.map((cartItem, index) => (
+                                items.map((cartItem, index) => (
                                     <CartItems className="cartItems" key={cartItem?.card?.info?.id} data={cartItem} index={index} />
                                 ))
                             }
@@ -58,8 +59,6 @@ const Cart = () => {
                     </div>
                     : <h1 className='empty-cart'>Your cart is Empty.</h1>
             }
-
-
         </div>
     )
 }

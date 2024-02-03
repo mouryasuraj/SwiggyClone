@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -13,16 +13,22 @@ import { Provider } from 'react-redux'
 import appStore from './Utils/appStore'
 import Search from "./components/Search";
 import UserProfile from "./components/UserProfile";
+import ShowMsgContext from "./Utils/context/showMsgContext";
+
 
 
 // Root Component
 const App = () => {
+    const [showSuccessMsg, setShowSuccessMsg] = useState(false)
+    const [itemInCartMsg, setItemInCartMsg] = useState(false)
     return (
         <Provider store={appStore}>
-            <div id="main">
-                <Header />
-                <Outlet />
-            </div>
+            <ShowMsgContext.Provider value={{ showMsg: showSuccessMsg, itemInCart:itemInCartMsg, setItemInCartMsg, setShowSuccessMsg }}>
+                <div id="main">
+                    <Header />
+                    <Outlet />
+                </div>
+            </ShowMsgContext.Provider>
         </Provider>
     )
 }

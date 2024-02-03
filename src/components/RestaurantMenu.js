@@ -1,13 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import RestaurantMenuList from "./RestaurantMenuList";
 import Shimmer from './Shimmer'
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
 import NavigateHome from "./NavigateHome";
+import ItemAddedSuccessfully from "./ItemAddedSuccessfully";
+import ItemInCartMsg from "./ItemInCartMsg";
+import { useContext } from "react";
+import ShowMsgContext from "../Utils/context/showMsgContext";
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
-
     const listOfMenu = useRestaurantMenu(resId);
+    const { showMsg, itemInCart } = useContext(ShowMsgContext)
 
     if (listOfMenu === null) return <Shimmer />
 
@@ -16,9 +20,6 @@ const RestaurantMenu = () => {
 
     // details of list of menu
     const categories = listOfMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-
-
-
 
 
     return (
@@ -47,6 +48,8 @@ const RestaurantMenu = () => {
                 }
 
             </div>
+            {showMsg && <ItemAddedSuccessfully />}
+            {itemInCart && <ItemInCartMsg />}
         </div>
     )
 }

@@ -1,26 +1,38 @@
 import VegIcon from "./VegIcon";
 import NonVegIcon from "./NonVegIcon";
-import Quantity from "./Quantity";
 import { menuListImgURL } from "../Utils/constant";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../Utils/slices/cartSlice'
-import { useState } from "react";
+import { useContext } from "react";
+import ShowMsgContext from "../Utils/context/showMsgContext";
 
 const RestaurantCategory = ({ data }) => {
 
-    // Local variable to show Quantity component
-    const [showQuantity, setShowQuantity] = useState(false)
+    const {showMsg,setShowSuccessMsg, itemInCart, setItemInCartMsg} = useContext(ShowMsgContext)
 
-    const dispatch = useDispatch()
-    const handleAddItemToCart = (card) => {
-        setShowQuantity(true)
-        dispatch(addItem(card))
+    const { items } = useSelector((store) => store.cart)
+    const dispatch = useDispatch();
+
+    const handleAddItemToCart = (card, id, index) => {
+        const isItemInCart = items.some((c) => c.card.info.id === id);
+        if (!isItemInCart) {
+            dispatch(addItem(card))
+            setShowSuccessMsg(true)
+            setTimeout(() => {
+                setShowSuccessMsg(false)
+            }, 2000);
+        } else {
+            setItemInCartMsg(true);
+            setTimeout(()=>{
+                setItemInCartMsg(false)
+            },2000)
+        }
     }
 
     return (
         <>
             {
-                data.map((card) => {
+                data.map((card, index) => {
                     const { name, price, defaultPrice, description, imageId, isVeg, id } = card?.card?.info
                     return (
                         <div key={id} className="res-dish-list">
@@ -37,7 +49,7 @@ const RestaurantCategory = ({ data }) => {
                             <div className="right">
                                 <div className="dish-img-container">
                                     {imageId ? <img src={menuListImgURL + imageId} alt="" /> : ''}
-                                    <button onClick={() => handleAddItemToCart(card)}>ADD</button>
+                                    <button onClick={() => handleAddItemToCart(card, id, index)}>ADD</button>
                                 </div>
                             </div>
                         </div>

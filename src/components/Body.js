@@ -22,10 +22,10 @@ const Body = () => {
             <Cuisines cuisines={cuisines} listOfRes={listOfRes} filteredRes={filteredRes} />
 
             {/* Search BAR  */}
-            {/* <form onSubmit={handleSearchInput} className="search">
+            <form onSubmit={handleSearchInput} className="search">
                 <input type="text" placeholder="Search for restaurant...." value={searchTerm} onChange={handleInput} />
                 <button>Search</button>
-            </form> */}
+            </form>
 
             {/* Title */}
             <div className="title-container">
@@ -49,9 +49,9 @@ const Body = () => {
                         : filteredRes.map((card) => {
                             return (
                                 <Link className="menu" to={`restaurant-menu/${card?.info?.id}`} key={card?.info?.id}>
-                                {
-                                    card?.info?.promoted ? <RestaurantWithPromotedLabel resData={card} /> : <RestaurantCard resData={card} />
-                                }
+                                    {
+                                        card?.info?.promoted ? <RestaurantWithPromotedLabel resData={card} /> : <RestaurantCard resData={card} />
+                                    }
                                 </Link>)
                         }))
                 }
