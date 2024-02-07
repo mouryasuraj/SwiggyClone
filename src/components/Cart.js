@@ -4,10 +4,8 @@ import { clearCart } from '../Utils/slices/cartSlice'
 import { useEffect } from 'react'
 import NavigateHome from './NavigateHome'
 import BillDetails from './BillDetails'
-import ItemAddedSuccessfully from './ItemAddedSuccessfully'
 
 const Cart = () => {
-
     const { items} = useSelector((store) => store.cart)
     const cartLength = items.length;
 
