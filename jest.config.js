@@ -195,4 +195,9 @@ const config = {
   // watchman: true,
 };
 
-module.exports = config;
+module.exports = {
+  config,
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/node_modules/identity-obj-proxy"
+  }
+}

@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1707328585151" clover="3.2.0">
-  <project timestamp="1707328585152" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1707365829767" clover="3.2.0">
+  <project timestamp="1707365829767" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="8" methods="7" coveredmethods="7" elements="30" coveredelements="26" complexity="0" loc="11" ncloc="11" packages="2" files="2" classes="2"/>
+    <package name="Utils">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="appStore.js" path="E:\Projects\Swiggy Clone Project using React\src\Utils\appStore.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components">
+      <metrics statements="10" coveredstatements="10" conditionals="12" coveredconditionals="8" methods="7" coveredmethods="7"/>
+      <file name="Header.js" path="E:\Projects\Swiggy Clone Project using React\src\components\Header.js">
+        <metrics statements="10" coveredstatements="10" conditionals="12" coveredconditionals="8" methods="7" coveredmethods="7"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="30" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="42" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="48" count="3" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
   </project>
 </coverage>
