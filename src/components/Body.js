@@ -3,7 +3,7 @@ import Filter from "./Filter"
 import Shimmer from "./Shimmer"
 import { Link } from 'react-router-dom'
 import useBody from "../Utils/useBody"
-import Loader from "./Loader"
+// import Loader from "./Loader"
 import Cuisines from "./Cuisines"
 
 
@@ -23,7 +23,7 @@ const Body = () => {
 
             {/* Search BAR  */}
             <form onSubmit={handleSearchInput} className="search">
-                <input type="text" placeholder="Search for restaurant...." value={searchTerm} onChange={handleInput} />
+                <input data-testid='searchBar' type="text" placeholder="Search for restaurant...." value={searchTerm} onChange={handleInput} />
                 <button>Search</button>
             </form>
 
