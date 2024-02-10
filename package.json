@@ -1,7 +1,7 @@
 {
   "name": "swiggy-clone-project-using-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the clone of swiggy website",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",

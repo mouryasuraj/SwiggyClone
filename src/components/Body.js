@@ -3,7 +3,7 @@ import Filter from "./Filter"
 import Shimmer from "./Shimmer"
 import { Link } from 'react-router-dom'
 import useBody from "../Utils/useBody"
-// import Loader from "./Loader"
+import Loader from "./Loader"
 import Cuisines from "./Cuisines"
 
 

@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
-// import offers from '../assets/offers.png'
-// import logo from '../assets/Logo.jpg'
+import offers from '../assets/offers.png'
+import logo from '../assets/Logo.jpg'
 
 
 
@@ -22,7 +22,7 @@ const Header = () => {
             {/* Logo Container */}
             <nav>
                 <div className="">
-                    {/* <Link className="logo-container" to='/'><img src={logo} alt="" /></Link> */}
+                    <Link className="logo-container" to='/'><img src={logo} alt="" /></Link>
                 </div>
                 {/* Nav Items */}
                 <div className="nav-items">
@@ -35,7 +35,7 @@ const Header = () => {
                         </NavLink>
                         <NavLink className={({ isActive }) => `${isActive ? 'active' : 'li'}`} to='/offers'>
                             <div className="icons-container">
-                                {/* <img src={offers} alt="" /> */}
+                                <img src={offers} alt="" />
                                 Offers
                             </div>
                         </NavLink>
