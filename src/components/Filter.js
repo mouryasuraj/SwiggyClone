@@ -1,10 +1,10 @@
 
 
-const Filter = ({topRatedRes, id, filterName, handleEvent}) => {
+const Filter = ({topRatedRes, id, testId, filterName, handleEvent}) => {
 
 
     return (
-        <div className="top-rated">
+        <div data-testid = {testId} className="top-rated">
             <input type="checkbox" id={id} checked={topRatedRes} onChange={handleEvent} />
             <label htmlFor={id}>{filterName}</label>
         </div>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/8</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -135,17 +135,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,7 +173,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,7 +207,7 @@ const Body = () =&gt; {
 &nbsp;
 &nbsp;
     return listOfRes.length === 0 ? &lt;Shimmer /&gt; : (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;div className="body"&gt;</span>
+        &lt;div className="body"&gt;
 &nbsp;
             {/* Cuinsins Container */}
             &lt;Cuisines cuisines={cuisines} listOfRes={listOfRes} filteredRes={filteredRes} /&gt;
@@ -226,22 +226,22 @@ const Body = () =&gt; {
             {/* FIlter */}
             &lt;div className="filter"&gt;
                 {/* Top rated */}
-                &lt;Filter topRatedRes={topRatedRes} id="topRated" filterName="top rated restaurant" handleEvent={handleTopRatedRes} /&gt;
+                &lt;Filter testId ='topRes' topRatedRes={topRatedRes} id="topRated" filterName="top rated restaurant" handleEvent={handleTopRatedRes} /&gt;
 &nbsp;
                 {/* Under 200 */}
-                &lt;Filter id="under200" filterName="under 200" handleEvent={handleUnder200} /&gt;
+                &lt;Filter testId='under200' id="under200" filterName="under 200" handleEvent={handleUnder200} /&gt;
             &lt;/div&gt;
 &nbsp;
             {/* Restaurant Container */}
             &lt;div className="restaurant-container"&gt;
-                {loading ? &lt;Loader /&gt; : (
+                {loading ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;Loader /&gt; </span>: (
                     filteredRes.length === 0
-                        ? &lt;h1&gt;Results not found.&lt;/h1&gt;
-                        : filteredRes.map(<span class="fstat-no" title="function not covered" >(c</span>ard) =&gt; {
-<span class="cstat-no" title="statement not covered" >                            return (</span>
+                        ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;h1&gt;Results not found.&lt;/h1&gt;</span>
+                        : filteredRes.map((card) =&gt; {
+                            return (
                                 &lt;Link className="menu" to={`restaurant-menu/${card?.info?.id}`} key={card?.info?.id}&gt;
                                     {
-                                        card?.info?.promoted ? &lt;RestaurantWithPromotedLabel resData={card} /&gt; : &lt;RestaurantCard resData={card} /&gt;
+                                        card?.info?.promoted ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;RestaurantWithPromotedLabel resData={card} /&gt; </span>: &lt;RestaurantCard resData={card} /&gt;
                                     }
                                 &lt;/Link&gt;)
                         }))
@@ -259,7 +259,7 @@ export default Body
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-08T17:56:09.383Z
+                at 2024-02-10T04:46:11.631Z
             </div>
         <script src="../prettify.js"></script>
         <script>

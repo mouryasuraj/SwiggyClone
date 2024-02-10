@@ -35,10 +35,10 @@ const Body = () => {
             {/* FIlter */}
             <div className="filter">
                 {/* Top rated */}
-                <Filter topRatedRes={topRatedRes} id="topRated" filterName="top rated restaurant" handleEvent={handleTopRatedRes} />
+                <Filter testId ='topRes' topRatedRes={topRatedRes} id="topRated" filterName="top rated restaurant" handleEvent={handleTopRatedRes} />
 
                 {/* Under 200 */}
-                <Filter id="under200" filterName="under 200" handleEvent={handleUnder200} />
+                <Filter testId='under200' id="under200" filterName="under 200" handleEvent={handleUnder200} />
             </div>
 
             {/* Restaurant Container */}
